@@ -27,7 +27,7 @@ async function main() {
   const share = Math.floor((totalSupply - 500_000) / addrs.length);
 
   for(let i = 0; i < addrs.length; i++) {
-    await token.transfer(addrs[i], share.toString());
+    await token.transfer(addrs[i], ethers.utils.parseEther(share.toString()));
   }
 }
 
