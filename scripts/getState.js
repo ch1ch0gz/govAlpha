@@ -1,5 +1,4 @@
-const govAlphaAddr = ""; // <-- TODO: add govAlpha address here
-const tokenAddr = ""; // <-- TODO: add token address here
+const govAlphaAddr = "0x0c431da7185b7ff547e2ab76bc3dfa5475f3aa93"; // <-- TODO: add govAlpha address here
 
 // first proposal starts at 1
 const PROPOSAL_ID = 1;
