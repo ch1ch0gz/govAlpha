@@ -1,13 +1,8 @@
-const hre = require("hardhat");
-
-const exampleAddr = "0x1492a02507Ab07F42e0Ad68Df2c201555334Dcb1";
-const govAlphaAddr = "0xABFed4507fE61155305718bbb94fD3fe214B13F3";
-const tokenAddr = "0xE30a4B00e7197F47CE120a28208cC145a269aa49";
+const exampleAddr = ""; // <-- add example address here
+const govAlphaAddr = ""; // <-- add governor alpha address here
+const tokenAddr = ""; // <-- add token address
 
 async function main() {
-  const [addr1] = await ethers.provider.listAccounts();
-  const token = await ethers.getContractAt("Token", tokenAddr);
-  await token.delegate(addr1);
   const example = await ethers.getContractAt("Example", exampleAddr);
 
   const targets = [exampleAddr];
@@ -18,9 +13,9 @@ async function main() {
 
   const govAlpha = await ethers.getContractAt("GovernorAlpha", govAlphaAddr);
   const tx = await govAlpha.propose(targets, values, signatures, calldatas, description);
-  const receipt = await tx.wait();
-
-  console.log(receipt);
+  await tx.wait();
+  
+  console.log(`https://rinkeby.etherscan.io/tx/${tx.hash}`);
 }
 
 main()

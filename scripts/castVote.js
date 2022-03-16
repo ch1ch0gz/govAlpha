@@ -1,16 +1,22 @@
-const hre = require("hardhat");
+const govAlphaAddr = ""; // <-- TODO: add govAlpha address here
+const tokenAddr = ""; // <-- TODO: add token address here
 
-const govAlphaAddr = "0xABFed4507fE61155305718bbb94fD3fe214B13F3";
-const tokenAddr = "0xE30a4B00e7197F47CE120a28208cC145a269aa49";
+// first proposal starts at 1
+const PROPOSAL_ID = 1;
 
 async function main() {
   const [addr1] = await ethers.provider.listAccounts();
 
   const token = await ethers.getContractAt("Token", tokenAddr);
-  await token.delegate(addr1);
+  const tx1 = await token.delegate(addr1);
+  await tx1.wait();
 
   const govAlpha = await ethers.getContractAt("GovernorAlpha", govAlphaAddr);
-  await govAlpha.castVote(1, true);
+
+  const tx2 = await govAlpha.castVote(PROPOSAL_ID, true);
+  await tx2.wait();
+
+  console.log(`https://rinkeby.etherscan.io/tx/${tx.hash}`);
 }
 
 main()
