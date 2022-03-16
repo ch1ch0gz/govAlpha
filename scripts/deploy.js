@@ -25,7 +25,7 @@ async function main() {
   console.log("govalpha deployed");
 
   const Example = await ethers.getContractFactory("Example");
-  example = await Example.deploy();
+  example = await Example.deploy(timelock.address);
   await example.deployed();
 
   console.log({

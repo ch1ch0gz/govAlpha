@@ -1,4 +1,4 @@
-const { assert } = require("chai");
+const { assert, expect } = require("chai");
 const { ethers } = require("hardhat");
 
 const { getContractAddress } = ethers.utils;
@@ -25,7 +25,7 @@ describe("GovernorAlpha", function () {
     await govAlpha.deployed();
 
     const Example = await ethers.getContractFactory("Example");
-    example = await Example.deploy();
+    example = await Example.deploy(timelock.address);
     await example.deployed();
   });
 
@@ -59,7 +59,7 @@ describe("GovernorAlpha", function () {
 
         const { startBlock, endBlock } = await govAlpha.proposals(1);
         const diff = endBlock.sub(startBlock);
-        for(let i = 0; i < diff.toNumber(); i++) {
+        for (let i = 0; i < diff.toNumber(); i++) {
           await hre.network.provider.send("evm_mine");
         }
       });
@@ -86,5 +86,18 @@ describe("GovernorAlpha", function () {
         });
       });
     });
+  });
+});
+
+describe("Example", function () {
+  beforeEach(async () => {
+    const Example = await ethers.getContractFactory("Example");
+    example = await Example.deploy(ethers.constants.AddressZero);
+    await example.deployed();
+  });
+
+  it("should revert when a non-admin attempts to change the message", async () => {
+    const tx = example.changeMsg("I am not the admin!");
+    await expect(tx).to.be.reverted;
   });
 });
