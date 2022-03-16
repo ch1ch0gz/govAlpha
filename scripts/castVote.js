@@ -18,7 +18,6 @@ async function main() {
 
   console.log(`delegate txn: https://rinkeby.etherscan.io/tx/${tx1.hash}`);
   console.log(`cast vote txn: https://rinkeby.etherscan.io/tx/${tx2.hash}`);
-
 }
 
 main()

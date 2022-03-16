@@ -1,6 +1,6 @@
-const exampleAddr = ""; // <-- add example address here
-const govAlphaAddr = ""; // <-- add governor alpha address here
-const tokenAddr = ""; // <-- add token address
+const exampleAddr = ''; // <-- add example address here
+const govAlphaAddr = ''; // <-- add governor alpha address here
+const tokenAddr = ''; // <-- add token address
 
 async function main() {
   const example = await ethers.getContractAt("Example", exampleAddr);
@@ -15,7 +15,7 @@ async function main() {
   const tx = await govAlpha.propose(targets, values, signatures, calldatas, description);
   await tx.wait();
   
-  console.log(`https://rinkeby.etherscan.io/tx/${tx.hash}`);
+  console.log(`propose txn: https://rinkeby.etherscan.io/tx/${tx.hash}`);
 }
 
 main()
