@@ -61,13 +61,6 @@ Setup
 
 Let's get the repository all setup first:
 
-Clone the repository: git clone https://github.com/Dan-Nolan/GovAlpha.git
-In the repository, install all dependencies with npm i
-Create a .env containing two keys: INFURA and PRIVATE_KEY. By default the network in the configuration is listed as rinkeby, but feel free to choose a testnet where you have some testnet ether, and choose a testnet private key (be absolutely sure this is not linked to any mainnet funds!). Fill in these values in the .env so you have a file that looks like this:
-PRIVATE_KEY=x
-INFURA=y
-Where x is your private key associated to a testnet account that has testnet ether and y is an infura URL which points to an infura node on the same testnet.
-
 Deployment
 
 To deploy the contracts, run npx hardhat run scripts/deploy.js --network rinkeby to deploy all the contracts. At the end of this script you will receive the addresses for all of the contracts. Hold onto these addresses, we'll use them in the following scripts.
